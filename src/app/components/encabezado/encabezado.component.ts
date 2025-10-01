@@ -14,6 +14,13 @@ export class EncabezadoComponent implements AfterViewInit {
     this.setupLetterAnimations();
   }
 
+  scrollToFooter() {
+    const footer = document.querySelector('.footer');
+    if (footer) {
+      footer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
   setupLetterAnimations() {
     const navLinks = document.querySelectorAll('.nav-link');
 
@@ -35,38 +42,19 @@ export class EncabezadoComponent implements AfterViewInit {
       link.addEventListener('mouseenter', () => {
         const letters = link.querySelectorAll('.letter');
 
-        if (linkText === 'gallery') {
-          // GALLERY: Efecto carrusel - letras rotan como en un carrusel
+        if (linkText === 'shop') {
+          // SHOP: Efecto flip - letras se voltean en el eje X como tarjetas de precio
           gsap.fromTo(letters,
             {
-              rotationY: 0,
+              rotationX: 0,
               opacity: 1
             },
             {
-              rotationY: 360,
-              opacity: 0.8,
-              duration: 0.6,
-              stagger: 0.05,
-              ease: 'power2.inOut'
-            }
-          );
-        } else if (linkText === 'shop') {
-          // SHOP: Efecto de monedas cayendo - letras caen y rebotan
-          gsap.fromTo(letters,
-            {
-              y: 0,
-              rotation: 0,
-              opacity: 1
-            },
-            {
-              y: 15,
-              rotation: 360,
+              rotationX: 360,
               opacity: 0.8,
               duration: 0.5,
               stagger: 0.04,
-              ease: 'bounce.out',
-              yoyo: true,
-              repeat: 1
+              ease: 'power2.inOut'
             }
           );
         }
@@ -79,7 +67,7 @@ export class EncabezadoComponent implements AfterViewInit {
         gsap.to(letters, {
           x: 0,
           y: 0,
-          rotationY: 0,
+          rotationX: 0,
           rotation: 0,
           opacity: 1,
           duration: 0.3,
