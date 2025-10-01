@@ -17,19 +17,86 @@ export class CaracteristicasComponent implements AfterViewInit {
   private isDragging: boolean = false;
 
   ngAfterViewInit() {
-    this.video1.nativeElement.play();
     this.setupSwipeListeners();
+    this.setupVideoListeners();
+
+    // Intentar reproducir el primer video
+    this.playVideo(this.video1.nativeElement);
+  }
+
+  private setupVideoListeners() {
+    // Asegurar que los videos se mantengan en loop
+    this.video1.nativeElement.addEventListener('ended', () => {
+      if (this.activeVideo === 1) {
+        this.video1.nativeElement.currentTime = 0;
+        this.playVideo(this.video1.nativeElement);
+      }
+    });
+
+    this.video2.nativeElement.addEventListener('ended', () => {
+      if (this.activeVideo === 2) {
+        this.video2.nativeElement.currentTime = 0;
+        this.playVideo(this.video2.nativeElement);
+      }
+    });
+
+    // Listener para cuando el video se pausa inesperadamente
+    this.video1.nativeElement.addEventListener('pause', () => {
+      if (this.activeVideo === 1 && !this.isDragging) {
+        setTimeout(() => {
+          if (this.activeVideo === 1) {
+            this.playVideo(this.video1.nativeElement);
+          }
+        }, 100);
+      }
+    });
+
+    this.video2.nativeElement.addEventListener('pause', () => {
+      if (this.activeVideo === 2 && !this.isDragging) {
+        setTimeout(() => {
+          if (this.activeVideo === 2) {
+            this.playVideo(this.video2.nativeElement);
+          }
+        }, 100);
+      }
+    });
+
+    // Listener para cuando el documento se vuelve visible (cambio de tabs)
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) {
+        if (this.activeVideo === 1) {
+          this.playVideo(this.video1.nativeElement);
+        } else {
+          this.playVideo(this.video2.nativeElement);
+        }
+      }
+    });
+  }
+
+  private playVideo(video: HTMLVideoElement) {
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(error => {
+        console.log('Autoplay prevented:', error);
+      });
+    }
   }
 
   setActiveVideo(videoNumber: number) {
     this.activeVideo = videoNumber;
 
     if (videoNumber === 1) {
-      this.video1.nativeElement.play();
       this.video2.nativeElement.pause();
+      this.video2.nativeElement.currentTime = 0;
+      setTimeout(() => {
+        this.playVideo(this.video1.nativeElement);
+      }, 100);
     } else {
-      this.video2.nativeElement.play();
       this.video1.nativeElement.pause();
+      this.video1.nativeElement.currentTime = 0;
+      setTimeout(() => {
+        this.playVideo(this.video2.nativeElement);
+      }, 100);
     }
   }
 
