@@ -1,1 +1,25 @@
-<p>caracteristicas works!</p>
+<div class="caracteristicas-container">
+  <div class="videos-cube">
+    <div class="video-wrapper"
+         [class.active]="activeVideo === 1"
+         [class.inactive-right]="activeVideo === 2"
+         (click)="setActiveVideo(1)">
+      <div class="video-frame">
+        <video #video1 [muted]="true" loop playsinline>
+          <source src="assets/videos/Video 23-04-25, 5 04 49 am.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+
+    <div class="video-wrapper"
+         [class.active]="activeVideo === 2"
+         [class.inactive-left]="activeVideo === 1"
+         (click)="setActiveVideo(2)">
+      <div class="video-frame">
+        <video #video2 [muted]="true" loop playsinline>
+          <source src="assets/videos/Video 23-04-25, 5 10 37 am.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </div>
+</div>
