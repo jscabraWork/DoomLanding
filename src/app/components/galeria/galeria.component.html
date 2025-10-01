@@ -1,13 +1,22 @@
 <section class="galeria">
+
+
   <swiper-container
-    slides-per-view="1"
+    effect="coverflow"
+    grab-cursor="true"
+    centered-slides="true"
+    slides-per-view="auto"
     space-between="30"
     loop="true"
-    pagination="true"
-    navigation="true"
-    autoplay-delay="3000"
-    autoplay-disable-on-interaction="false"
-    breakpoints='{"640": {"slidesPerView": 2}, "1024": {"slidesPerView": 3}}'>
+    autoplay-delay="2000"
+    autoplay-pause-on-mouse-enter="false"
+    navigation="false"
+    speed="800"
+    coverflow-effect-rotate="50"
+    coverflow-effect-stretch="0"
+    coverflow-effect-depth="100"
+    coverflow-effect-modifier="1"
+    coverflow-effect-slide-shadows="true">
 
     <swiper-slide>
       <img src="assets/images/1.jpg" alt="DOOM Imagen 1">
@@ -33,12 +42,28 @@
       <img src="assets/images/6.jpg" alt="DOOM Imagen 6">
     </swiper-slide>
 
-     <swiper-slide>
+    <swiper-slide>
       <img src="assets/images/7.jpg" alt="DOOM Imagen 7">
     </swiper-slide>
 
-     <swiper-slide>
+    <swiper-slide>
       <img src="assets/images/8.jpg" alt="DOOM Imagen 8">
+    </swiper-slide>
+
+    <swiper-slide>
+      <img src="assets/images/9.jpg" alt="DOOM Imagen 9">
+    </swiper-slide>
+
+    <swiper-slide>
+      <img src="assets/images/10.jpg" alt="DOOM Imagen 10">
+    </swiper-slide>
+
+    <swiper-slide>
+      <img src="assets/images/11.jpg" alt="DOOM Imagen 11">
+    </swiper-slide>
+
+    <swiper-slide>
+      <img src="assets/images/12.jpg" alt="DOOM Imagen 12">
     </swiper-slide>
 
   </swiper-container>
