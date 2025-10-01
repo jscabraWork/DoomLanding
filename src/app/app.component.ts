@@ -2,6 +2,7 @@ import { Component, AfterViewInit, OnDestroy } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { PreloaderComponent } from './components/preloader/preloader.component';
 import { EncabezadoComponent } from './components/encabezado/encabezado.component';
+import { HeroComponent } from './components/hero/hero.component';
 import { ContenidoPrincipalComponent } from './components/contenido-principal/contenido-principal.component';
 import { ContenidoSecundarioComponent } from './components/contenido-secundario/contenido-secundario.component';
 import { CaracteristicasComponent } from './components/caracteristicas/caracteristicas.component';
@@ -10,7 +11,7 @@ import { PiePaginaComponent } from './components/pie-pagina/pie-pagina.component
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, PreloaderComponent, EncabezadoComponent, ContenidoPrincipalComponent, ContenidoSecundarioComponent, CaracteristicasComponent, GaleriaComponent, PiePaginaComponent],
+  imports: [RouterOutlet, PreloaderComponent, EncabezadoComponent, HeroComponent, ContenidoPrincipalComponent, ContenidoSecundarioComponent, CaracteristicasComponent, GaleriaComponent, PiePaginaComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

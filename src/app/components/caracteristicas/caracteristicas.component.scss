@@ -8,10 +8,23 @@
   min-height: 100vh;
   background-color: transparent;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 60px 20px;
   perspective: 2000px;
+}
+
+.section-title {
+  font-size: 48px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--color-white);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-top: 70px;
+  margin-bottom: 5px;
+  text-shadow: 0 0 20px rgba(255, 0, 0, 0.8), 0 0 40px rgba(255, 0, 0, 0.5);
 }
 
 .videos-cube {

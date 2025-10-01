@@ -38,74 +38,10 @@ export class PiePaginaComponent implements AfterViewInit, OnDestroy {
   }
 
   resetAndAnimate() {
-    // Resetear los títulos antes de animar
-    const title1 = document.querySelector('#title-1') as HTMLElement;
-    const title2 = document.querySelector('#title-2') as HTMLElement;
-
-    if (title1) title1.innerHTML = 'This is a movement.';
-    if (title2) title2.innerHTML = 'This is DOOM';
-
-    // Ejecutar la animación
-    this.splitTextAnimation();
+    this.animateButton();
   }
 
-  splitTextAnimation() {
-    const title1 = document.querySelector('#title-1') as HTMLElement;
-    const title2 = document.querySelector('#title-2') as HTMLElement;
-
-    if (!title1 || !title2) return;
-
-    // Dividir el texto en letras individuales
-    const wrapLetters = (element: HTMLElement) => {
-      const text = element.textContent || '';
-      element.innerHTML = text
-        .split('')
-        .map(char => {
-          if (char === ' ') return '<span style="display:inline-block;width:0.3em;"></span>';
-          return `<span style="display:inline-block;opacity:0;">${char}</span>`;
-        })
-        .join('');
-      return element.querySelectorAll('span');
-    };
-
-    const letters1 = wrapLetters(title1);
-    const letters2 = wrapLetters(title2);
-
-    // Animar las letras con split effect
-    gsap.fromTo(letters1,
-      {
-        opacity: 0,
-        y: 100,
-        rotationX: -90
-      },
-      {
-        opacity: 1,
-        y: 0,
-        rotationX: 0,
-        duration: 0.8,
-        stagger: 0.03,
-        ease: 'back.out(1.7)'
-      }
-    );
-
-    gsap.fromTo(letters2,
-      {
-        opacity: 0,
-        y: 100,
-        rotationX: -90
-      },
-      {
-        opacity: 1,
-        y: 0,
-        rotationX: 0,
-        duration: 0.8,
-        stagger: 0.03,
-        ease: 'back.out(1.7)',
-        delay: 0.1
-      }
-    );
-
-    // También animar el botón
+  animateButton() {
     gsap.fromTo('.shop-tickets-btn',
       {
         opacity: 0,
@@ -117,7 +53,6 @@ export class PiePaginaComponent implements AfterViewInit, OnDestroy {
         y: 0,
         scale: 1,
         duration: 0.8,
-        delay: 0.5,
         ease: 'back.out(1.7)'
       }
     );
