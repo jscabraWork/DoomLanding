@@ -28,7 +28,7 @@ export class PiePaginaComponent implements AfterViewInit, OnDestroy {
           }
         });
       },
-      { threshold: 0.3 } // Ejecutar cuando el 30% del footer sea visible
+      { threshold: 0.05 } // Ejecutar cuando el 5% del footer sea visible
     );
 
     this.observer.observe(footer);
