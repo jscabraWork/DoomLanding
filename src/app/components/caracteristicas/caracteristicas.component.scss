@@ -1,13 +1,13 @@
 :host {
   display: block;
   min-height: 100vh;
-  background-color: #0a0a0a;
+  background-color: rgba(0, 0, 0, 0.85);
 }
 
 .caracteristicas-container {
   width: 100%;
   min-height: 100vh;
-  background-color: #0a0a0a;
+  background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -202,25 +202,93 @@
 }
 
 @media (max-width: 768px) {
+  .caracteristicas-container {
+    padding: 40px 15px;
+  }
+
   .videos-cube {
-    height: 600px;
+    height: 500px;
   }
 
   .video-wrapper {
-    width: 90%;
-    max-width: 640px;
-    height: 360px;
+    width: 85%;
+    max-width: 500px;
+    height: 280px;
 
     &.active {
-      transform: translateX(10px) rotateY(45deg);
+      transform: translateX(0) rotateY(0deg);
     }
 
     &.inactive-right {
-      transform: translateX(325px) rotateY(-45deg);
+      transform: translateX(100%) rotateY(0deg) scale(0.8);
+      opacity: 0.5;
     }
 
     &.inactive-left {
-      transform: translateX(-305px) rotateY(45deg);
+      transform: translateX(-100%) rotateY(0deg) scale(0.8);
+      opacity: 0.5;
     }
+  }
+
+  .video-frame {
+    &::before,
+    &::after {
+      width: 25px;
+      height: 25px;
+      top: 10px;
+      left: 10px;
+      bottom: 10px;
+      right: 10px;
+    }
+  }
+
+  .video-wrapper::before,
+  .video-wrapper::after {
+    width: 25px;
+    height: 25px;
+    top: 10px;
+    right: 10px;
+    bottom: 10px;
+    left: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .caracteristicas-container {
+    padding: 30px 10px;
+  }
+
+  .videos-cube {
+    height: 400px;
+  }
+
+  .video-wrapper {
+    width: 95%;
+    max-width: 400px;
+    height: 225px;
+
+    &.active {
+      transform: translateX(0) rotateY(0deg);
+    }
+
+    &.inactive-right,
+    &.inactive-left {
+      transform: scale(0);
+      opacity: 0;
+    }
+  }
+
+  .video-frame {
+    &::before,
+    &::after {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .video-wrapper::before,
+  .video-wrapper::after {
+    width: 20px;
+    height: 20px;
   }
 }

@@ -1,6 +1,6 @@
 .galeria {
   padding: 4rem 2rem;
-  background-color: var(--color-black);
+  background-color: rgba(0, 0, 0, 0.85);
 
   h2 {
     text-align: center;
@@ -66,15 +66,78 @@ swiper-container::part(bullet-active) {
 }
 
 // Responsive
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .galeria {
+    padding: 3rem 1.5rem;
+
     h2 {
-      font-size: 2.5rem;
+      font-size: 3rem;
+      margin-bottom: 3rem;
     }
 
     swiper-slide {
-      width: 300px;
-      height: 350px;
+      width: 350px;
+      height: 400px;
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .galeria {
+    padding: 2.5rem 1rem;
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2.5rem;
+      letter-spacing: 2px;
+    }
+
+    swiper-slide {
+      width: 280px;
+      height: 320px;
+    }
+
+    swiper-container {
+      padding: 40px 0 60px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .galeria {
+    padding: 2rem 0.5rem;
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      letter-spacing: 1.5px;
+    }
+
+    swiper-slide {
+      width: 90%;
+      max-width: 250px;
+      height: 280px;
+
+      img {
+        border-radius: 8px;
+      }
+    }
+
+    swiper-container {
+      padding: 30px 0 50px;
+    }
+  }
+
+  swiper-container::part(pagination) {
+    bottom: 10px;
+  }
+
+  swiper-container::part(bullet) {
+    width: 8px;
+    height: 8px;
+  }
+
+  swiper-container::part(bullet-active) {
+    width: 25px;
   }
 }

@@ -14,6 +14,13 @@ export class EncabezadoComponent implements AfterViewInit {
     this.setupLetterAnimations();
   }
 
+  scrollToSection(sectionId: string) {
+    const section = document.querySelector(`app-${sectionId}`);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
   scrollToFooter() {
     const footer = document.querySelector('.footer');
     if (footer) {
@@ -57,6 +64,53 @@ export class EncabezadoComponent implements AfterViewInit {
               ease: 'power2.inOut'
             }
           );
+        } else if (linkText === 'contenido') {
+          // CONTENIDO: Efecto wave - ondas de arriba a abajo
+          gsap.fromTo(letters,
+            {
+              y: 0
+            },
+            {
+              y: -10,
+              duration: 0.4,
+              stagger: 0.03,
+              ease: 'power1.inOut',
+              yoyo: true,
+              repeat: 1
+            }
+          );
+        } else if (linkText === 'galería') {
+          // GALERÍA: Efecto scatter - letras se dispersan
+          gsap.fromTo(letters,
+            {
+              x: 0,
+              y: 0,
+              rotation: 0
+            },
+            {
+              x: () => Math.random() * 10 - 5,
+              y: () => Math.random() * 10 - 5,
+              rotation: () => Math.random() * 20 - 10,
+              duration: 0.3,
+              stagger: 0.02,
+              ease: 'power2.out'
+            }
+          );
+        } else if (linkText === 'características') {
+          // CARACTERÍSTICAS: Efecto bounce - rebotan como elementos
+          gsap.fromTo(letters,
+            {
+              y: 0,
+              scale: 1
+            },
+            {
+              y: -8,
+              scale: 1.1,
+              duration: 0.3,
+              stagger: 0.03,
+              ease: 'bounce.out'
+            }
+          );
         }
       });
 
@@ -64,14 +118,19 @@ export class EncabezadoComponent implements AfterViewInit {
       link.addEventListener('mouseleave', () => {
         const letters = link.querySelectorAll('.letter');
 
+        // Detener todas las animaciones en progreso antes de resetear
+        gsap.killTweensOf(letters);
+
         gsap.to(letters, {
           x: 0,
           y: 0,
           rotationX: 0,
           rotation: 0,
+          scale: 1,
           opacity: 1,
           duration: 0.3,
-          ease: 'power2.out'
+          ease: 'power2.out',
+          clearProps: 'all'
         });
       });
     });

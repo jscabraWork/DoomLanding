@@ -1,1 +1,70 @@
 // Ya no necesitamos padding porque sticky respeta el flujo del documento
+
+:host {
+  position: relative;
+}
+
+.background-logo {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  max-width: 600px;
+  height: 60vh;
+  background-image: url('/assets/images/doomlogo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.4;
+  z-index: 0;
+  pointer-events: none;
+  animation: pulse 3s ease-in-out infinite;
+  mix-blend-mode: screen;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+}
+
+[data-scroll-container] {
+  position: relative;
+  z-index: 1;
+  background-color: transparent;
+}
+
+body {
+  background-color: #000;
+}
+
+// Responsive para el logo
+@media (max-width: 1024px) {
+  .background-logo {
+    width: 70%;
+    max-width: 500px;
+    height: 50vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .background-logo {
+    width: 80%;
+    max-width: 400px;
+    height: 40vh;
+    opacity: 0.3;
+  }
+}
+
+@media (max-width: 480px) {
+  .background-logo {
+    width: 90%;
+    max-width: 300px;
+    height: 30vh;
+    opacity: 0.25;
+  }
+}
