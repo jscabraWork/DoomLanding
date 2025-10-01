@@ -12,6 +12,7 @@ gsap.registerPlugin(ScrollTrigger);
 })
 export class PiePaginaComponent implements AfterViewInit, OnDestroy {
   private observer: IntersectionObserver | null = null;
+  private hasSetupHover = false;
 
   ngAfterViewInit() {
     // Usar IntersectionObserver para detectar cuando el footer es visible
@@ -22,9 +23,11 @@ export class PiePaginaComponent implements AfterViewInit, OnDestroy {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            this.splitTextAnimation();
-            this.setupButtonHover();
-            this.observer?.disconnect(); // Solo ejecutar una vez
+            this.resetAndAnimate();
+            if (!this.hasSetupHover) {
+              this.setupButtonHover();
+              this.hasSetupHover = true;
+            }
           }
         });
       },
@@ -32,6 +35,18 @@ export class PiePaginaComponent implements AfterViewInit, OnDestroy {
     );
 
     this.observer.observe(footer);
+  }
+
+  resetAndAnimate() {
+    // Resetear los títulos antes de animar
+    const title1 = document.querySelector('#title-1') as HTMLElement;
+    const title2 = document.querySelector('#title-2') as HTMLElement;
+
+    if (title1) title1.innerHTML = 'This is a movement.';
+    if (title2) title2.innerHTML = 'This is DOOM';
+
+    // Ejecutar la animación
+    this.splitTextAnimation();
   }
 
   splitTextAnimation() {
