@@ -39,3 +39,32 @@
     pointer-events: none;
   }
 }
+
+// Responsive
+@media (max-width: 1024px) {
+  .image-container {
+    height: 70vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .image-container {
+    height: 50vh;
+
+    &::before,
+    &::after {
+      height: 100px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .image-container {
+    height: 40vh;
+
+    &::before,
+    &::after {
+      height: 80px;
+    }
+  }
+}

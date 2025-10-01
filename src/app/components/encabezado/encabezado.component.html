@@ -1,10 +1,16 @@
 <header class="header">
   <nav class="nav">
-    <div class="nav-right">
-      <a (click)="scrollToSection('contenido-principal')" class="nav-link">CONTENIDO</a>
-      <a (click)="scrollToSection('galeria')" class="nav-link">GALERÍA</a>
-      <a (click)="scrollToSection('caracteristicas')" class="nav-link">CARACTERÍSTICAS</a>
-      <a (click)="scrollToFooter()" class="nav-link">SHOP</a>
+    <button class="menu-toggle" (click)="toggleMenu()" [class.active]="isMenuOpen">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="nav-right" [class.mobile-open]="isMenuOpen">
+      <a (click)="scrollToSection('galeria'); closeMenu()" class="nav-link">GALERÍA</a>
+      <a (click)="scrollToSection('contenido-principal'); closeMenu()" class="nav-link">CONTENIDO</a>
+      <a (click)="scrollToSection('caracteristicas'); closeMenu()" class="nav-link">CARACTERÍSTICAS</a>
+      <a (click)="scrollToFooter(); closeMenu()" class="nav-link">SHOP</a>
     </div>
   </nav>
 </header>

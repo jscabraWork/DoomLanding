@@ -1,6 +1,5 @@
 :host {
   display: block;
-  min-height: 100vh;
   background-color: rgba(0, 0, 0, 0.85);
 }
 
@@ -143,6 +142,26 @@
   border-left-width: 2px;
 }
 
+// Indicadores (visible en móvil)
+.video-indicators {
+  display: none;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.indicator {
+  width: 30px;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+
+  &.active {
+    background-color: #fff;
+    width: 40px;
+  }
+}
+
 // Responsive
 @media (max-width: 2200px) {
   .video-wrapper {
@@ -202,31 +221,49 @@
 }
 
 @media (max-width: 768px) {
+  :host {
+    min-height: auto;
+  }
+
   .caracteristicas-container {
+    min-height: auto;
     padding: 40px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  // Mostrar indicadores
+  .video-indicators {
+    display: flex;
   }
 
   .videos-cube {
-    height: 500px;
+    height: 400px;
+    touch-action: pan-y;
+    transition: transform 0.2s ease-out;
   }
 
   .video-wrapper {
-    width: 85%;
+    width: 90%;
     max-width: 500px;
     height: 280px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     &.active {
       transform: translateX(0) rotateY(0deg);
     }
 
     &.inactive-right {
-      transform: translateX(100%) rotateY(0deg) scale(0.8);
-      opacity: 0.5;
+      transform: translateX(120%) rotateY(0deg) scale(0.7);
+      opacity: 0;
+      pointer-events: none;
     }
 
     &.inactive-left {
-      transform: translateX(-100%) rotateY(0deg) scale(0.8);
-      opacity: 0.5;
+      transform: translateX(-120%) rotateY(0deg) scale(0.7);
+      opacity: 0;
+      pointer-events: none;
     }
   }
 
@@ -254,18 +291,23 @@
 }
 
 @media (max-width: 480px) {
+  :host {
+    min-height: auto;
+  }
+
   .caracteristicas-container {
+    min-height: auto;
     padding: 30px 10px;
   }
 
   .videos-cube {
-    height: 400px;
+    height: 320px;
   }
 
   .video-wrapper {
     width: 95%;
-    max-width: 400px;
-    height: 225px;
+    max-width: 380px;
+    height: 215px;
 
     &.active {
       transform: translateX(0) rotateY(0deg);
@@ -275,6 +317,7 @@
     &.inactive-left {
       transform: scale(0);
       opacity: 0;
+      pointer-events: none;
     }
   }
 
@@ -290,5 +333,14 @@
   .video-wrapper::after {
     width: 20px;
     height: 20px;
+  }
+
+  .indicator {
+    width: 25px;
+    height: 3px;
+
+    &.active {
+      width: 35px;
+    }
   }
 }

@@ -39,8 +39,12 @@ export class ContenidoSecundarioComponent implements AfterViewInit, OnDestroy {
 
   private resizeCanvas() {
     const canvas = this.canvasRef.nativeElement;
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    const container = canvas.parentElement;
+
+    if (container) {
+      canvas.width = container.clientWidth;
+      canvas.height = container.clientHeight;
+    }
 
     if (this.img && this.img.complete) {
       this.drawBaseImage();
@@ -49,12 +53,29 @@ export class ContenidoSecundarioComponent implements AfterViewInit, OnDestroy {
 
   private drawBaseImage() {
     const canvas = this.canvasRef.nativeElement;
-    const scale = Math.max(canvas.width / this.img.width, canvas.height / this.img.height);
-    const x = (canvas.width / 2) - (this.img.width / 2) * scale;
-    const y = (canvas.height / 2) - (this.img.height / 2) * scale;
+
+    // Calcular escala para cubrir el canvas manteniendo aspect ratio
+    const imgRatio = this.img.width / this.img.height;
+    const canvasRatio = canvas.width / canvas.height;
+
+    let drawWidth, drawHeight, offsetX, offsetY;
+
+    if (canvasRatio > imgRatio) {
+      // Canvas es más ancho que la imagen
+      drawWidth = canvas.width;
+      drawHeight = canvas.width / imgRatio;
+      offsetX = 0;
+      offsetY = (canvas.height - drawHeight) / 2;
+    } else {
+      // Canvas es más alto que la imagen
+      drawWidth = canvas.height * imgRatio;
+      drawHeight = canvas.height;
+      offsetX = (canvas.width - drawWidth) / 2;
+      offsetY = 0;
+    }
 
     this.ctx.filter = 'grayscale(100%)';
-    this.ctx.drawImage(this.img, x, y, this.img.width * scale, this.img.height * scale);
+    this.ctx.drawImage(this.img, offsetX, offsetY, drawWidth, drawHeight);
     this.ctx.filter = 'none';
 
     // Guardar imageData para manipulación

@@ -1,5 +1,3 @@
-// Ya no necesitamos padding porque sticky respeta el flujo del documento
-
 :host {
   position: relative;
 }
@@ -36,6 +34,7 @@
   position: relative;
   z-index: 1;
   background-color: transparent;
+  padding-top: 70px;
 }
 
 body {
@@ -52,6 +51,10 @@ body {
 }
 
 @media (max-width: 768px) {
+  [data-scroll-container] {
+    padding-top: 60px;
+  }
+
   .background-logo {
     width: 80%;
     max-width: 400px;
@@ -61,6 +64,10 @@ body {
 }
 
 @media (max-width: 480px) {
+  [data-scroll-container] {
+    padding-top: 55px;
+  }
+
   .background-logo {
     width: 90%;
     max-width: 300px;

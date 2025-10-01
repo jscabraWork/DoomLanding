@@ -9,9 +9,18 @@ import gsap from 'gsap';
   styleUrl: './encabezado.component.scss'
 })
 export class EncabezadoComponent implements AfterViewInit {
+  isMenuOpen = false;
 
   ngAfterViewInit() {
     this.setupLetterAnimations();
+  }
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  closeMenu() {
+    this.isMenuOpen = false;
   }
 
   scrollToSection(sectionId: string) {
