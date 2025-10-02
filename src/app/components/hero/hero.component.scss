@@ -6,9 +6,7 @@
   align-items: center;
   background-color: rgba(0, 0, 0, 0.85);
   padding: 60px 40px;
-  background: 
-    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), /* 👈 capa oscura encima */
-    url('/assets/images/20.jpg');
+  background: url('/assets/images/20.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

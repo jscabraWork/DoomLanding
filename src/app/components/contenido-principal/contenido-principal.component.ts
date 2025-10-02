@@ -74,9 +74,7 @@ export class ContenidoPrincipalComponent implements AfterViewInit, OnDestroy {
       offsetY = 0;
     }
 
-    this.ctx.filter = 'grayscale(100%)';
     this.ctx.drawImage(this.img, offsetX, offsetY, drawWidth, drawHeight);
-    this.ctx.filter = 'none';
 
     // Guardar imageData para manipulación
     this.imageData = this.ctx.getImageData(0, 0, canvas.width, canvas.height);
