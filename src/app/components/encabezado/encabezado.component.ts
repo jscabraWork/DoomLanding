@@ -54,73 +54,22 @@ export class EncabezadoComponent implements AfterViewInit {
         link.appendChild(span);
       });
 
-      // Animaciones específicas por sección
+      // Animación de rotación suave para todos los links
       link.addEventListener('mouseenter', () => {
         const letters = link.querySelectorAll('.letter');
 
-        if (linkText === 'shop') {
-          // SHOP: Efecto flip - letras se voltean en el eje X como tarjetas de precio
-          gsap.fromTo(letters,
-            {
-              rotationX: 0,
-              opacity: 1
-            },
-            {
-              rotationX: 360,
-              opacity: 0.8,
-              duration: 0.5,
-              stagger: 0.04,
-              ease: 'power2.inOut'
-            }
-          );
-        } else if (linkText === 'contenido') {
-          // CONTENIDO: Efecto wave - ondas de arriba a abajo
-          gsap.fromTo(letters,
-            {
-              y: 0
-            },
-            {
-              y: -10,
-              duration: 0.4,
-              stagger: 0.03,
-              ease: 'power1.inOut',
-              yoyo: true,
-              repeat: 1
-            }
-          );
-        } else if (linkText === 'galería') {
-          // GALERÍA: Efecto scatter - letras se dispersan
-          gsap.fromTo(letters,
-            {
-              x: 0,
-              y: 0,
-              rotation: 0
-            },
-            {
-              x: () => Math.random() * 10 - 5,
-              y: () => Math.random() * 10 - 5,
-              rotation: () => Math.random() * 20 - 10,
-              duration: 0.3,
-              stagger: 0.02,
-              ease: 'power2.out'
-            }
-          );
-        } else if (linkText === 'características') {
-          // CARACTERÍSTICAS: Efecto bounce - rebotan como elementos
-          gsap.fromTo(letters,
-            {
-              y: 0,
-              scale: 1
-            },
-            {
-              y: -8,
-              scale: 1.1,
-              duration: 0.3,
-              stagger: 0.03,
-              ease: 'bounce.out'
-            }
-          );
-        }
+        // Efecto de rotación suave en su sitio
+        gsap.fromTo(letters,
+          {
+            rotation: 0
+          },
+          {
+            rotation: 360,
+            duration: 0.6,
+            stagger: 0.04,
+            ease: 'power2.inOut'
+          }
+        );
       });
 
       // Resetear al salir del hover
